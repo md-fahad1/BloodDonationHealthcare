@@ -1,13 +1,14 @@
-import React from 'react'
-import AdminNav from './AdminNav'
+"use client";
+import React from "react";
+import AdminNav from "./AdminNav";
 
 const MoneyDonor = () => {
   return (
     <div>
-    <AdminNav />
-    <div>MoneyDonor</div>
+      <AdminNav />
+      <div>MoneyDonor</div>
     </div>
-  )
-}
+  );
+};
 
-export default MoneyDonor
+export default MoneyDonor;

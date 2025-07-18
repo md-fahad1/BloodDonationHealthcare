@@ -1,14 +1,13 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import Home1 from "../Components/Home"
-import Contact from './Website/Contact'
-import About from './Website/About'
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import Home1 from "../Components/Home";
+import Contact from "./Website/Contact";
+import About from "./Website/About";
 
-import Team from '@/pages/Website/Team'
-import Service from './Website/Service'
+import Team from "@/pages/Website/Team";
+import Service from "./Website/Service";
 
-
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -18,9 +17,6 @@ export default function Home() {
       <Team />
       <Service />
       <Contact />
-      
-
-     
     </div>
-  )
+  );
 }

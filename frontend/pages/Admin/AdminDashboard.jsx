@@ -124,7 +124,7 @@ const AdminDashboard = () => {
               <div className="text-3xl font-bold">Total Donation</div>
               <div className="flex-grow"></div>
               <div className="bg-white w-full h-8 text-gray-600 text-center text-lg font-semibold">
-                <Link href="/Admin/MoneyDonor">
+                <Link href="pages/Admin/MoneyDonor.jsx">
                   Full Details <span className="ml-2 font-bold">→</span>
                 </Link>
               </div>

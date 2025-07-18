@@ -1,4 +1,4 @@
-import Navbar from "../Components/Navbar";
+import Navbar from "./Website/Navbar";
 import { useRouter } from "next/router";
 import "@/styles/globals.css";
 import { AuthProvider } from "../context/AuthContext";

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import Home1 from "../Components/Home";
+import Home1 from "./Website/Home";
 import Contact from "./Website/Contact";
 import About from "./Website/About";
 

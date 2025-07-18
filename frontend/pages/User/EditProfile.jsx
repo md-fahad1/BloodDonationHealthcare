@@ -1,23 +1,20 @@
 // EditProfile.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import UserNav from "./UserNav";
-import { useAuth } from '../AuthContext';
+import { useAuth } from "../../context/AuthContext";
 import SessionCheck from "../Session";
-
-
 
 const EditProfile = () => {
   const router = useRouter();
   const { profilePic } = router.query;
   const [profilePicture, setProfilPicture] = useState(profilePic || "");
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [formErrors, setFormErrors] = useState({});
-  const { Tkey } = useAuth() || {}; 
-  
+  const { Tkey } = useAuth() || {};
 
-console.log("token", Tkey);
+  console.log("token", Tkey);
   const handlePictureChange = (e) => {
     const file = e.target.files[0];
     setProfilPicture(file);
@@ -25,51 +22,49 @@ console.log("token", Tkey);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!profilePicture) {
       setFormErrors({
-     
-        profilePicture: 'Please select a profile picture',
+        profilePicture: "Please select a profile picture",
       });
     } else {
       try {
         const formData = new FormData();
-       
-        formData.append('File', profilePicture);
-  
+
+        formData.append("File", profilePicture);
+
         const response = await axios.post(
-            'https://localhost:44307/api/UploadFile',
-            formData,
-            {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `${Tkey}`, // Include Tkey in the headers
-              },
+          "https://localhost:44307/api/UploadFile",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `${Tkey}`, // Include Tkey in the headers
+            },
           }
         );
-  
-        console.log('Response:', response);
-  
+
+        console.log("Response:", response);
+
         if (response.data) {
-          console.log('Profile updated successfully');
-          router.push('/User/UserDashboard');
+          console.log("Profile updated successfully");
+          router.push("/User/UserDashboard");
         } else {
-          setError('Failed to update profile');
+          setError("Failed to update profile");
         }
       } catch (error) {
-        console.error('Update failed:', error);
+        console.error("Update failed:", error);
         if (error.response) {
-          console.log('Response data:', error.response.data);
-          console.log('Response status:', error.response.status);
-          console.log('Response headers:', error.response.headers);
+          console.log("Response data:", error.response.data);
+          console.log("Response status:", error.response.status);
+          console.log("Response headers:", error.response.headers);
         }
-        setError(`An error occurred while updating the profile: ${error.message}`);
+        setError(
+          `An error occurred while updating the profile: ${error.message}`
+        );
       }
     }
   };
-  
-  
-  
 
   return (
     <div>
@@ -79,9 +74,11 @@ console.log("token", Tkey);
         <div className="bg-white p-8 rounded shadow-md w-96">
           <h2 className="text-2xl font-bold mb-6">EDIT PROFILE</h2>
           <form onSubmit={handleSubmit}>
-           
             <div className="mb-2">
-              <label htmlFor="profilePicture" className="block text-sm font-semibold text-gray-600 mb-1">
+              <label
+                htmlFor="profilePicture"
+                className="block text-sm font-semibold text-gray-600 mb-1"
+              >
                 Profile Picture:
               </label>
               <input
@@ -90,11 +87,15 @@ console.log("token", Tkey);
                 name="profilePicture"
                 onChange={handlePictureChange}
                 className={`w-full p-3 border rounded-md focus:outline-none ${
-                  formErrors.profilePicture ? "border-red-500" : "border-gray-300"
+                  formErrors.profilePicture
+                    ? "border-red-500"
+                    : "border-gray-300"
                 }`}
               />
               {formErrors.profilePicture && (
-                <p className="text-red-500 text-sm mt-1">{formErrors.profilePicture}</p>
+                <p className="text-red-500 text-sm mt-1">
+                  {formErrors.profilePicture}
+                </p>
               )}
             </div>
             <button
